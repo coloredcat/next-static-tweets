@@ -169,9 +169,8 @@ export const Tweet = ({
           }}
         >
           {media.map(m => (
-            <>
+            <React.Fragment key={m.media_key}>
               <img
-                key={m.media_key}
                 alt={text}
                 height={m.height}
                 width={m.width}
@@ -234,7 +233,7 @@ export const Tweet = ({
                   }
                 </a>
               )}
-            </>
+            </React.Fragment>
           ))}
         </div>
       ) : null}
