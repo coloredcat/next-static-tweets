@@ -3,10 +3,11 @@ import dayjs from 'dayjs';
 import { TransformedTweet } from './types/tweet';
 
 /**
- * Supports plain text, images, quote tweets.
+ * Supports plain text, images, quote tweets. Original component by @leerob
+ * https://github.com/leerob/leerob.io/blob/main/components/Tweet.tsx
  *
- * Needs support for images, GIFs, and replies maybe?
- * Styles use !important to override Tailwind .prose inside MDX.
+ * Twitter API v2 doesn't support getting GIFs and Videos, so a warning
+ * and a link to the original tweet is displayed on image hover 😞
  */
 export const Tweet = ({
   id,

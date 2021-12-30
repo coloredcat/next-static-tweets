@@ -1,5 +1,4 @@
 import qs from 'qs';
-// @ts-ignore
 import { RawTweetType, TransformedTweet, TweetData } from './types/tweet';
 
 interface GetTweetArgs {
@@ -7,6 +6,15 @@ interface GetTweetArgs {
   regex?: string;
 }
 
+/**
+ * Based on @leerob's original code
+ * https://github.com/leerob/leerob.io/blob/main/lib/twitter.ts
+ * Improved by Maxime Heckel
+ * https://github.com/MaximeHeckel/blog.maximeheckel.com/blob/main/lib/tweets.ts
+ *
+ * Parses markdown to find embedded tweets and returns their data.
+ * A custom regex expression can be pased if your component isn't named <Tweet>
+ */
 export const getTweets = async (args: GetTweetArgs) => {
   const { markdown, regex = /<Tweet\sid="[0-9]+"\s\/>/g } = args;
 
@@ -14,7 +22,7 @@ export const getTweets = async (args: GetTweetArgs) => {
 
   if (TWITTER_API_KEY) {
     /**
-     * Find all occurrence of <StaticTweet id="NUMERIC_TWEET_ID"/>
+     * Find all occurrence of <Tweet id="NUMERIC_TWEET_ID"/>
      * in the content of the MDX blog post
      */
     const tweetMatch = markdown.match(regex);
