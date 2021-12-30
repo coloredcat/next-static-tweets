@@ -3,6 +3,11 @@ import { TransformedTweet } from './types/tweet';
 
 const TweetContext = createContext([] as TransformedTweet[]);
 
+/**
+ * React hook to access Tweet data.
+ *
+ * @returns {getById, getAll} - Get a specific tweet by Id, or return all tweets.
+ */
 export const useTweet = () => {
   const tweets = useContext(TweetContext);
 
@@ -12,7 +17,11 @@ export const useTweet = () => {
     return tweet;
   };
 
-  return { getById };
+  const getAll = () => {
+    return tweets;
+  };
+
+  return { getById, getAll };
 };
 
 interface TweetProviderProps {
@@ -24,6 +33,9 @@ export const TweetProvider = (props: TweetProviderProps) => {
   return <TweetContext.Provider value={props.tweets} {...props} />;
 };
 
+/**
+ * Wraps your page and adds a Context Provider with tweet info
+ */
 export const withTweets = (Component: any) => {
   return (hocProps: Pick<TweetProviderProps, 'tweets'>) => {
     return (
