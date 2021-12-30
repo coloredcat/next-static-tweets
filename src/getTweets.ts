@@ -56,8 +56,6 @@ export const getTweets = async (args: GetTweetArgs) => {
       );
       const tweets = (await response.json()) as RawTweetType;
 
-      console.dir(tweets, { depth: null });
-
       const getAuthorInfo = (author_id: string) => {
         return tweets.includes.users.find(user => user.id === author_id)!;
       };
