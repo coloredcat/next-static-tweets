@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { format } from 'date-fns';
-import Image from 'next/image';
+import dayjs from 'dayjs';
 import { TransformedTweet } from './types/tweet';
 
 /**
@@ -61,7 +60,7 @@ export const Tweet = ({
             background: 'transparent',
           }}
         >
-          <Image
+          <img
             alt={author.username}
             height={48}
             width={48}
@@ -171,7 +170,7 @@ export const Tweet = ({
         >
           {media.map(m => (
             <>
-              <Image
+              <img
                 key={m.media_key}
                 alt={text}
                 height={m.height}
@@ -256,7 +255,7 @@ export const Tweet = ({
           title={`Time Posted: ${createdAt.toUTCString()}`}
           dateTime={createdAt.toISOString()}
         >
-          {format(createdAt, 'h:mm a - MMM d, y')}
+          {dayjs().format('h:mm a - MMM d, y')}
         </time>
       </a>
       <div
