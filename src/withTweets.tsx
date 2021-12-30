@@ -1,12 +1,7 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext } from 'react';
 import { TransformedTweet } from './types/tweet';
 
 const TweetContext = createContext([] as TransformedTweet[]);
-
-export const useWhatTheFuck = () => {
-  const [state] = useState('fuck');
-  return state;
-};
 
 export const useTweet = () => {
   const tweets = useContext(TweetContext);
